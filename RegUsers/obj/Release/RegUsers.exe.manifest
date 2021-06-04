@@ -109,7 +109,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>JupaRSQR5JsJi+4fYacOk2I/zGCWMZ+LI76xvDombwg=</dsig:DigestValue>
+        <dsig:DigestValue>Re/JwE0Ccs+VYi28pdYgp2Wcris/3LKrMm2EPNyz1C0=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -245,13 +245,13 @@
       </hash>
     </dependentAssembly>
   </dependency>
-  <file name="RegUsers.exe.config" size="2253">
+  <file name="RegUsers.exe.config" size="2161">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>14Q312WsYCeViWSul6McCGL8LNukCX4d/Qr9tQyXjRg=</dsig:DigestValue>
+      <dsig:DigestValue>IoNsFBU1Sx6RRAEkERe3BIMXlBet+cFgFfoXkMu5Y5g=</dsig:DigestValue>
     </hash>
   </file>
   <file name="runtimes\win-arm\native\e_sqlite3.dll" size="1083392">
