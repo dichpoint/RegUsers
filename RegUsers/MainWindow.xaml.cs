@@ -38,24 +38,30 @@ namespace RegUsers
             check = CheckEmail(email) ? ++check : check;
             if (check == 4)
             {
-                User user = new User(login, pass, email); // создаем ОБЪЕКТ
+                //
+                User userTest = null; // объект для проверки на существование в БД
+                //using (AppContext db = new AppContext())
+                //{
+                userTest = db.Users.Where(b => (b.Login == login)).FirstOrDefault(); // проверка существования логина в БД
+                //}
 
-                // проверка  на существование данного логина в БД
-                if (user == db.Users.Where(b => (b.Login == login)).FirstOrDefault())
+                if (userTest == null)
                 {
-                    textBoxLogin.ToolTip = "Логин {login} уже занят в системе!";
-                    textBoxLogin.Background = Brushes.DarkRed;
-                }
-                else
-                {
+                    User user = new User(login, pass, email);
+                    MessageBox.Show("Регистрация прошла успешно");
                     db.Users.Add(user); // если такого ОБЪЕКТА нет в БД, то мы его добавляем
                     db.SaveChanges(); // сохраняем изменения в БД
-                    MessageBox.Show("Регистрация прошла успешно!");
                     AuthWindow authWindow = new AuthWindow();
                     authWindow.Show();
                     Close();
 
                 }
+                else
+                {
+                    textBoxLogin.ToolTip = $"Логин {login} уже занят в системе!";
+                    textBoxLogin.Background = Brushes.DarkRed;
+                }
+                //
             }
             else
             {
