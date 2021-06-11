@@ -251,7 +251,7 @@
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>IoNsFBU1Sx6RRAEkERe3BIMXlBet+cFgFfoXkMu5Y5g=</dsig:DigestValue>
+      <dsig:DigestValue>S2fTf3ktmUKS3wJ03vx5SqFr4BupSmzFJhDyLWPGeiE=</dsig:DigestValue>
     </hash>
   </file>
   <file name="runtimes\win-arm\native\e_sqlite3.dll" size="1083392">

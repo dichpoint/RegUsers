@@ -58,7 +58,6 @@ C:\Users\Huawei\Desktop\КНИТУ\предметы\1 курс\2 семестр\
 C:\Users\Huawei\Documents\GitHub\RegUsers\RegUsers\bin\Release\runtimes\win-x86\native\e_sqlite3.dll
 C:\Users\Huawei\Documents\GitHub\RegUsers\RegUsers\bin\Release\runtimes\win-x64\native\e_sqlite3.dll
 C:\Users\Huawei\Documents\GitHub\RegUsers\RegUsers\bin\Release\runtimes\win-arm\native\e_sqlite3.dll
-C:\Users\Huawei\Documents\GitHub\RegUsers\RegUsers\bin\Release\RegUsersDatebase.db
 C:\Users\Huawei\Documents\GitHub\RegUsers\RegUsers\bin\Release\RegUsers.exe.config
 C:\Users\Huawei\Documents\GitHub\RegUsers\RegUsers\bin\Release\RegUsers.exe.manifest
 C:\Users\Huawei\Documents\GitHub\RegUsers\RegUsers\bin\Release\RegUsers.application
@@ -91,7 +90,6 @@ C:\Users\Huawei\Documents\GitHub\RegUsers\RegUsers\bin\Release\System.Data.SQLit
 C:\Users\Huawei\Documents\GitHub\RegUsers\RegUsers\bin\Release\System.Memory.xml
 C:\Users\Huawei\Documents\GitHub\RegUsers\RegUsers\bin\Release\System.Numerics.Vectors.xml
 C:\Users\Huawei\Documents\GitHub\RegUsers\RegUsers\bin\Release\System.Runtime.CompilerServices.Unsafe.xml
-C:\Users\Huawei\Documents\GitHub\RegUsers\RegUsers\obj\Release\RegUsers.csprojAssemblyReference.cache
 C:\Users\Huawei\Documents\GitHub\RegUsers\RegUsers\obj\Release\AuthWindow.g.cs
 C:\Users\Huawei\Documents\GitHub\RegUsers\RegUsers\obj\Release\MainWindow.g.cs
 C:\Users\Huawei\Documents\GitHub\RegUsers\RegUsers\obj\Release\UserPageWindow.g.cs
@@ -112,3 +110,4 @@ C:\Users\Huawei\Documents\GitHub\RegUsers\RegUsers\obj\Release\RegUsers.applicat
 C:\Users\Huawei\Documents\GitHub\RegUsers\RegUsers\obj\Release\RegUsers.csproj.CopyComplete
 C:\Users\Huawei\Documents\GitHub\RegUsers\RegUsers\obj\Release\RegUsers.exe
 C:\Users\Huawei\Documents\GitHub\RegUsers\RegUsers\obj\Release\RegUsers.pdb
+C:\Users\Huawei\Documents\GitHub\RegUsers\RegUsers\obj\Release\RegUsers.csproj.AssemblyReference.cache

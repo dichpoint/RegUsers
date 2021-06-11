@@ -189,9 +189,7 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <None Include="RegUsersDatebase.db">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+    <None Include="RegUsersDatabase.db" />
     <None Include="RegUsers_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
