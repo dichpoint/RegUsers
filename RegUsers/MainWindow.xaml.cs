@@ -26,8 +26,8 @@ namespace RegUsers
         private void Button_Reg_Click(object sender, RoutedEventArgs e)
         {
             string login = textBoxLogin.Text.Trim().ToLower();
-            string pass = passBox.Password.Trim();
-            string pass_2 = passBox_2.Password.Trim();
+            string pass = passBox.Password;
+            string pass_2 = passBox_2.Password;
             string email = textBoxEmail.Text.Trim().ToLower();
             
             int check = 0;
@@ -89,6 +89,12 @@ namespace RegUsers
             else if (!(Regex.IsMatch(login, "[A-Za-z]")))
             {
                 textBoxLogin.ToolTip = "Логин должен содержать хотя бы одну букву!";
+                textBoxLogin.Background = Brushes.DarkRed;
+                return false;
+            }
+            else if (login.Contains(' '))
+            {
+                textBoxLogin.ToolTip = "Логин не должен содержать пробелов!";
                 textBoxLogin.Background = Brushes.DarkRed;
                 return false;
             }
