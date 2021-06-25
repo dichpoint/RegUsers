@@ -12,7 +12,7 @@ namespace RegUsers
     public partial class UserPageWindow : Window
     {
         // конструктор
-        public UserPageWindow()
+        internal UserPageWindow()
         {
             InitializeComponent();
 

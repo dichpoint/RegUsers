@@ -15,7 +15,7 @@ namespace RegUsers
         AppContext db; // создаем объект контекста
 
         // конструктор
-        public MainWindow()
+        internal MainWindow()
         {
             InitializeComponent();
 

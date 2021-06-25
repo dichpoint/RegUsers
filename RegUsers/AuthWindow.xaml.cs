@@ -13,7 +13,7 @@ namespace RegUsers
     public partial class AuthWindow : Window
     {
         // конструктор
-        public AuthWindow()
+        internal AuthWindow()
         {
             InitializeComponent();
         }
