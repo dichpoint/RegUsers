@@ -12,13 +12,9 @@ namespace RegUsers
     public partial class UserPageWindow : Window
     {
         // конструктор
-        internal UserPageWindow()
+        public UserPageWindow()
         {
             InitializeComponent();
-
-            AppContext db = new AppContext();
-            List<User> users = db.Users.ToList();
-            listOfUsers.ItemsSource = users;
         }
     }
 }

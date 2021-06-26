@@ -2,28 +2,28 @@
 {
     class User // класс-модель
     {
-        internal int id { get; set; }
+        public int id { get; set; }
         private string login, pass, email;
 
-        internal string Login
+        public string Login
         {
             get { return login; }
             set { login = value; }
         }
-        internal string Pass
+        public string Pass
         {
             get { return pass; }
             set { pass = value; }
         }
-        internal string Email
+        public string Email
         {
             get { return email; }
             set { email = value; }
         }
 
-        internal User() { }
+        public User() { }
 
-        internal User(string login, string pass, string email)
+        public User(string login, string pass, string email)
         {
             this.login = login;
             this.pass = pass;

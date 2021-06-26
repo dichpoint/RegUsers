@@ -15,12 +15,15 @@ namespace RegUsers
         AppContext db; // создаем объект контекста
 
         // конструктор
-        internal MainWindow()
+        public MainWindow()
         {
             InitializeComponent();
 
             db = new AppContext(); // выделяем память
         }
+
+        private const int START_CHECK_NUMBER = 0;
+        private const int SUCCESSFUL_CHECK_NUMBER = 4;
 
         // обработчик события ("Зарегистрироваться")
         private void Button_Reg_Click(object sender, RoutedEventArgs e)
@@ -30,20 +33,16 @@ namespace RegUsers
             string pass_2 = passBox_2.Password;
             string email = textBoxEmail.Text.Trim().ToLower();
             
-            int check = 0;
+            int check = START_CHECK_NUMBER;
             // CHECK ALL
             check = CheckLogin(login) ? ++check : check;
             check = CheckPass(pass) ? ++check : check;
             check = CheckPass_2(pass, pass_2) ? ++check : check;
             check = CheckEmail(email) ? ++check : check;
-            if (check == 4)
+            if (check == SUCCESSFUL_CHECK_NUMBER)
             {
-                //
                 User userTest = null; // объект для проверки на существование в БД
-                //using (AppContext db = new AppContext())
-                //{
                 userTest = db.Users.Where(b => (b.Login == login)).FirstOrDefault(); // проверка существования логина в БД
-                //}
 
                 if (userTest == null)
                 {
@@ -65,36 +64,47 @@ namespace RegUsers
             }
             else
             {
-                check = 0;
+                check = START_CHECK_NUMBER;
                 //MessageBox.Show("Регистрация прошла НЕ успешно!");
             }
         }
+
+        private const int MIN_LENGTH_LOGIN = 5;
+        private const int MIN_LENGTH_PASS = 7;
+        private const int MAX_LENGTH = 30;
+        private const int EMPTY_LENGTH = 0;
 
         // ф-ции для проверки логина и пароля
         private bool CheckLogin(string login)
         {
             // checking LOGIN
-            if (login.Length < 5)
+            if (login.Length < MIN_LENGTH_LOGIN)
             {
                 textBoxLogin.ToolTip = "Логин должен содержать не меньше 5 символов!";
                 textBoxLogin.Background = Brushes.DarkRed;
                 return false;
             }
-            else if (Regex.IsMatch(login, "[а-я]"))
+            else if (login.Length > MAX_LENGTH)
             {
-                textBoxLogin.ToolTip = "Логин должен состоять из букв латинского алфавита!";
-                textBoxLogin.Background = Brushes.DarkRed;
-                return false;
-            }
-            else if (!(Regex.IsMatch(login, "[A-Za-z]")))
-            {
-                textBoxLogin.ToolTip = "Логин должен содержать хотя бы одну букву!";
+                textBoxLogin.ToolTip = "Логин должен содержать не больше 30 символов!";
                 textBoxLogin.Background = Brushes.DarkRed;
                 return false;
             }
             else if (login.Contains(' '))
             {
                 textBoxLogin.ToolTip = "Логин не должен содержать пробелов!";
+                textBoxLogin.Background = Brushes.DarkRed;
+                return false;
+            }
+            else if (Regex.IsMatch(login, "[а-я]"))
+            {
+                textBoxLogin.ToolTip = "Логин должен состоять из букв только латинского алфавита!";
+                textBoxLogin.Background = Brushes.DarkRed;
+                return false;
+            }
+            else if (!(Regex.IsMatch(login, "[A-Za-z]")))
+            {
+                textBoxLogin.ToolTip = "Логин должен содержать хотя бы одну букву!";
                 textBoxLogin.Background = Brushes.DarkRed;
                 return false;
             }
@@ -108,15 +118,21 @@ namespace RegUsers
         private bool CheckPass(string pass)
         {
             // checking PASS
-            if (pass.Length < 7)
+            if (pass.Length < MIN_LENGTH_PASS)
             {
                 passBox.ToolTip = "Пароль должен содержать не меньше 7 символов!";
                 passBox.Background = Brushes.DarkRed;
                 return false;
             }
+            else if (pass.Length > MAX_LENGTH)
+            {
+                passBox.ToolTip = "Пароль должен содержать не больше 30 символов!";
+                passBox.Background = Brushes.DarkRed;
+                return false;
+            }
             else if (Regex.IsMatch(pass, "[а-я]"))
             {
-                passBox.ToolTip = "Пароль должен состоять из букв латинского алфавита!";
+                passBox.ToolTip = "Пароль должен состоять из букв только латинского алфавита!";
                 passBox.Background = Brushes.DarkRed;
                 return false;
             }
@@ -142,10 +158,9 @@ namespace RegUsers
         private bool CheckPass_2(string pass, string pass_2)
         {
             // checking PASS_2
-            string alph = "ABCDEFGHIJKLMNOPRSTUVWXYZ123456789!\"#$%&'()*+,-./::<=>?@[\\]:_{|}";
-            if (pass.IndexOfAny(alph.ToCharArray()) == -1)
+            if (pass_2.Length == EMPTY_LENGTH)
             {
-                passBox_2.ToolTip = "Пароль должен содержать хотя бы одну цифру и букву (лат. алф.)!";
+                passBox_2.ToolTip = "Это поле пустое!";
                 passBox_2.Background = Brushes.DarkRed;
                 return false;
             }

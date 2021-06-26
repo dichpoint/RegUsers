@@ -13,10 +13,13 @@ namespace RegUsers
     public partial class AuthWindow : Window
     {
         // конструктор
-        internal AuthWindow()
+        public AuthWindow()
         {
             InitializeComponent();
         }
+
+        private const int START_CHECK_NUMBER = 0;
+        private const int SUCCESSFUL_CHECK_NUMBER = 3;
 
         // обработчик события ("Войти")
         private void Button_Auth_Click(object sender, RoutedEventArgs e)
@@ -25,18 +28,19 @@ namespace RegUsers
             string login = textBoxLogin.Text.Trim().ToLower();
             string pass = passBox.Password.Trim();
 
-            int check = 0;
+            int check = START_CHECK_NUMBER;
+
             // CHECK ALL
             check = CheckLogin(login) ? ++check : check;
             check = CheckPass(pass) ? ++check : check;
-            if (check == 2)
+
+            User authUser = null;
+
+            check = CheckLoginInDB(authUser, login) ? ++check : check;
+
+            if (check == SUCCESSFUL_CHECK_NUMBER)
             {
-                User authUser = null;
-                using (AppContext db = new AppContext())
-                {
-                    authUser = db.Users.Where(b => (b.Login == login) && (b.Pass == pass)).FirstOrDefault(); // проверка логина и пароля в БД
-                }
-                if (authUser != null)
+                if (CheckPassInDB(authUser, pass) == true)
                 {
                     MessageBox.Show("Авторизация прошла успешно");
 
@@ -47,28 +51,48 @@ namespace RegUsers
                 }
                 else
                 {
-                    MessageBox.Show("Такого пользователя не существует!");
+                    passBox.ToolTip = "Неверный пароль!";
+                    passBox.Background = Brushes.DarkRed;
+                    check = START_CHECK_NUMBER;
                 }
             }
             else
             {
-                check = 0;
+                MessageBox.Show("Такого пользователя не существует!");
+                check = START_CHECK_NUMBER;
             }
+
         }
+
+        private const int MIN_LENGTH_LOGIN = 5;
+        private const int MIN_LENGTH_PASS = 7;
+        private const int MAX_LENGTH = 30;
 
         // ф-ции для проверки логина и пароля
         private bool CheckLogin(string login)
         {
             // checking LOGIN
-            if (login.Length < 5)
+            if (login.Length < MIN_LENGTH_LOGIN)
             {
                 textBoxLogin.ToolTip = "Логин должен содержать не меньше 5 символов!";
                 textBoxLogin.Background = Brushes.DarkRed;
                 return false;
             }
+            else if (login.Length > MAX_LENGTH)
+            {
+                textBoxLogin.ToolTip = "Логин должен содержать не больше 30 символов!";
+                textBoxLogin.Background = Brushes.DarkRed;
+                return false;
+            }
+            else if (login.Contains(' '))
+            {
+                textBoxLogin.ToolTip = "Логин не должен содержать пробелов!";
+                textBoxLogin.Background = Brushes.DarkRed;
+                return false;
+            }
             else if (Regex.IsMatch(login, "[а-я]"))
             {
-                textBoxLogin.ToolTip = "Логин должен состоять из букв латинского алфавита!";
+                textBoxLogin.ToolTip = "Логин должен состоять из букв только латинского алфавита!";
                 textBoxLogin.Background = Brushes.DarkRed;
                 return false;
             }
@@ -88,15 +112,21 @@ namespace RegUsers
         private bool CheckPass(string pass)
         {
             // checking PASS
-            if (pass.Length < 7)
+            if (pass.Length < MIN_LENGTH_PASS)
             {
                 passBox.ToolTip = "Пароль должен содержать не меньше 7 символов!";
                 passBox.Background = Brushes.DarkRed;
                 return false;
             }
+            else if (pass.Length > MAX_LENGTH)
+            {
+                passBox.ToolTip = "Пароль должен содержать не больше 30 символов!";
+                passBox.Background = Brushes.DarkRed;
+                return false;
+            }
             else if (Regex.IsMatch(pass, "[а-я]"))
             {
-                passBox.ToolTip = "Пароль должен состоять из букв латинского алфавита!";
+                passBox.ToolTip = "Пароль должен состоять из букв только латинского алфавита!";
                 passBox.Background = Brushes.DarkRed;
                 return false;
             }
@@ -117,6 +147,37 @@ namespace RegUsers
                 passBox.ToolTip = "";
                 passBox.Background = Brushes.Transparent;
                 return true;
+            }
+        }
+
+        private bool CheckLoginInDB(User authUser, string login)
+        {
+            using (AppContext db = new AppContext())
+            {
+                authUser = db.Users.Where(b => (b.Login == login)).FirstOrDefault(); // проверка логина в БД
+            }
+            if (authUser != null)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        private bool CheckPassInDB(User authUser, string pass)
+        {
+            using (AppContext db = new AppContext())
+            {
+                authUser = db.Users.Where(b => (b.Pass == pass)).FirstOrDefault(); // проверка пароля в БД
+            }
+            if (authUser != null)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
             }
         }
 

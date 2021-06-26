@@ -3,7 +3,7 @@
 namespace RegUsers
 {
     // связь с БД
-    internal class AppContext : DbContext
+    class AppContext : DbContext
     {
         public DbSet<User> Users { get; set; }
 
