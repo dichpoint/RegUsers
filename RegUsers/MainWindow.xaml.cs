@@ -204,13 +204,13 @@ namespace RegUsers
             {
                 textBoxEmail.ToolTip = "Некорректный Email!";
                 textBoxEmail.Background = (SolidColorBrush)new BrushConverter().ConvertFromString("#ea9999");
-                return true;
+                return false;
             }
             else
             {
                 textBoxEmail.ToolTip = null;
                 textBoxEmail.Background = Brushes.Transparent;
-                return false;
+                return true;
             }
         }
 

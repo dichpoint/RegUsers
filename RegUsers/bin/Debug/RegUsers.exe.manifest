@@ -102,14 +102,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="RegUsers.exe" size="26088">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="RegUsers.exe" size="26600">
       <assemblyIdentity name="RegUsers" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>47p/K0bQAP4r9Y7L+5TVoqQhF6agT946vzXsTkilYdE=</dsig:DigestValue>
+        <dsig:DigestValue>pzgYwJmwZV5FRdqbiGPic4pgxGQuUdA3g9ZZraL3rg8=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

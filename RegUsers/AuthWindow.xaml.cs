@@ -40,7 +40,7 @@ namespace RegUsers
 
             if (check == SUCCESSFUL_CHECK_NUMBER)
             {
-                if (CheckPassInDB(authUser, pass) == true)
+                if (CheckPassInDB(authUser, pass))
                 {
                     MessageBox.Show("Авторизация прошла успешно");
 
@@ -52,7 +52,7 @@ namespace RegUsers
                 else
                 {
                     passBox.ToolTip = "Неверный пароль!";
-                    passBox.Background = Brushes.DarkRed;
+                    passBox.Background = (SolidColorBrush)new BrushConverter().ConvertFromString("#ea9999");
                     check = START_CHECK_NUMBER;
                 }
             }
