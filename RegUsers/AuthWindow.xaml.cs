@@ -64,6 +64,7 @@ namespace RegUsers
 
         }
 
+        private const int EMPTY_LENGTH = 0;
         private const int MIN_LENGTH_LOGIN = 5;
         private const int MIN_LENGTH_PASS = 7;
         private const int MAX_LENGTH = 30;
@@ -72,39 +73,45 @@ namespace RegUsers
         private bool CheckLogin(string login)
         {
             // checking LOGIN
-            if (login.Length < MIN_LENGTH_LOGIN)
+            if (login.Length == EMPTY_LENGTH)
+            {
+                textBoxLogin.ToolTip = "Это поле пустое!";
+                textBoxLogin.Background = (SolidColorBrush)new BrushConverter().ConvertFromString("#ea9999");
+                return false;
+            }
+            else if (login.Length < MIN_LENGTH_LOGIN)
             {
                 textBoxLogin.ToolTip = "Логин должен содержать не меньше 5 символов!";
-                textBoxLogin.Background = Brushes.DarkRed;
+                textBoxLogin.Background = (SolidColorBrush)new BrushConverter().ConvertFromString("#ea9999");
                 return false;
             }
             else if (login.Length > MAX_LENGTH)
             {
                 textBoxLogin.ToolTip = "Логин должен содержать не больше 30 символов!";
-                textBoxLogin.Background = Brushes.DarkRed;
+                textBoxLogin.Background = (SolidColorBrush)new BrushConverter().ConvertFromString("#ea9999");
                 return false;
             }
             else if (login.Contains(' '))
             {
                 textBoxLogin.ToolTip = "Логин не должен содержать пробелов!";
-                textBoxLogin.Background = Brushes.DarkRed;
+                textBoxLogin.Background = (SolidColorBrush)new BrushConverter().ConvertFromString("#ea9999");
                 return false;
             }
             else if (Regex.IsMatch(login, "[а-я]"))
             {
                 textBoxLogin.ToolTip = "Логин должен состоять из букв только латинского алфавита!";
-                textBoxLogin.Background = Brushes.DarkRed;
+                textBoxLogin.Background = (SolidColorBrush)new BrushConverter().ConvertFromString("#ea9999");
                 return false;
             }
             else if (!(Regex.IsMatch(login, "[A-Za-z]")))
             {
                 textBoxLogin.ToolTip = "Логин должен содержать хотя бы одну букву!";
-                textBoxLogin.Background = Brushes.DarkRed;
+                textBoxLogin.Background = (SolidColorBrush)new BrushConverter().ConvertFromString("#ea9999");
                 return false;
             }
             else
             {
-                textBoxLogin.ToolTip = "";
+                textBoxLogin.ToolTip = null;
                 textBoxLogin.Background = Brushes.Transparent;
                 return true;
             }
@@ -112,39 +119,45 @@ namespace RegUsers
         private bool CheckPass(string pass)
         {
             // checking PASS
-            if (pass.Length < MIN_LENGTH_PASS)
+            if (pass.Length == EMPTY_LENGTH)
+            {
+                passBox.ToolTip = "Это поле пустое!";
+                passBox.Background = (SolidColorBrush)new BrushConverter().ConvertFromString("#ea9999");
+                return false;
+            }
+            else if (pass.Length < MIN_LENGTH_PASS)
             {
                 passBox.ToolTip = "Пароль должен содержать не меньше 7 символов!";
-                passBox.Background = Brushes.DarkRed;
+                passBox.Background = (SolidColorBrush)new BrushConverter().ConvertFromString("#ea9999");
                 return false;
             }
             else if (pass.Length > MAX_LENGTH)
             {
                 passBox.ToolTip = "Пароль должен содержать не больше 30 символов!";
-                passBox.Background = Brushes.DarkRed;
+                passBox.Background = (SolidColorBrush)new BrushConverter().ConvertFromString("#ea9999");
                 return false;
             }
             else if (Regex.IsMatch(pass, "[а-я]"))
             {
                 passBox.ToolTip = "Пароль должен состоять из букв только латинского алфавита!";
-                passBox.Background = Brushes.DarkRed;
+                passBox.Background = (SolidColorBrush)new BrushConverter().ConvertFromString("#ea9999");
                 return false;
             }
             else if (!(Regex.IsMatch(pass, "[A-Za-z]")))
             {
                 passBox.ToolTip = "Пароль должен содержать хотя бы одну букву!";
-                passBox.Background = Brushes.DarkRed;
+                passBox.Background = (SolidColorBrush)new BrushConverter().ConvertFromString("#ea9999");
                 return false;
             }
             else if (!(Regex.IsMatch(pass, "[0-9]")))
             {
                 passBox.ToolTip = "Пароль должен содержать хотя бы одну цифру!";
-                passBox.Background = Brushes.DarkRed;
+                passBox.Background = (SolidColorBrush)new BrushConverter().ConvertFromString("#ea9999");
                 return false;
             }
             else
             {
-                passBox.ToolTip = "";
+                passBox.ToolTip = null;
                 passBox.Background = Brushes.Transparent;
                 return true;
             }

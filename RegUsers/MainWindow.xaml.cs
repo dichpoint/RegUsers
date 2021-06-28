@@ -8,7 +8,7 @@ namespace RegUsers
     /// <summary>
     /// Логика взаимодействия для MainWindow.xaml
     /// </summary>
-    
+
     // Регистрация
     public partial class MainWindow : Window
     {
@@ -32,7 +32,7 @@ namespace RegUsers
             string pass = passBox.Password;
             string pass_2 = passBox_2.Password;
             string email = textBoxEmail.Text.Trim().ToLower();
-            
+
             int check = START_CHECK_NUMBER;
             // CHECK ALL
             check = CheckLogin(login) ? ++check : check;
@@ -58,9 +58,8 @@ namespace RegUsers
                 else
                 {
                     textBoxLogin.ToolTip = $"Логин {login} уже занят в системе!";
-                    textBoxLogin.Background = Brushes.DarkRed;
+                    textBoxLogin.Background = (SolidColorBrush)new BrushConverter().ConvertFromString("#ea9999");
                 }
-                //
             }
             else
             {
@@ -69,48 +68,54 @@ namespace RegUsers
             }
         }
 
+        private const int EMPTY_LENGTH = 0;
         private const int MIN_LENGTH_LOGIN = 5;
         private const int MIN_LENGTH_PASS = 7;
         private const int MAX_LENGTH = 30;
-        private const int EMPTY_LENGTH = 0;
 
         // ф-ции для проверки логина и пароля
         private bool CheckLogin(string login)
         {
             // checking LOGIN
-            if (login.Length < MIN_LENGTH_LOGIN)
+            if (login.Length == EMPTY_LENGTH)
+            {
+                textBoxLogin.ToolTip = "Это поле пустое!";
+                textBoxLogin.Background = (SolidColorBrush)new BrushConverter().ConvertFromString("#ea9999");
+                return false;
+            }
+            else if (login.Length < MIN_LENGTH_LOGIN)
             {
                 textBoxLogin.ToolTip = "Логин должен содержать не меньше 5 символов!";
-                textBoxLogin.Background = Brushes.DarkRed;
+                textBoxLogin.Background = (SolidColorBrush)new BrushConverter().ConvertFromString("#ea9999");
                 return false;
             }
             else if (login.Length > MAX_LENGTH)
             {
                 textBoxLogin.ToolTip = "Логин должен содержать не больше 30 символов!";
-                textBoxLogin.Background = Brushes.DarkRed;
+                textBoxLogin.Background = (SolidColorBrush)new BrushConverter().ConvertFromString("#ea9999");
                 return false;
             }
             else if (login.Contains(' '))
             {
                 textBoxLogin.ToolTip = "Логин не должен содержать пробелов!";
-                textBoxLogin.Background = Brushes.DarkRed;
+                textBoxLogin.Background = (SolidColorBrush)new BrushConverter().ConvertFromString("#ea9999");
                 return false;
             }
             else if (Regex.IsMatch(login, "[а-я]"))
             {
                 textBoxLogin.ToolTip = "Логин должен состоять из букв только латинского алфавита!";
-                textBoxLogin.Background = Brushes.DarkRed;
+                textBoxLogin.Background = (SolidColorBrush)new BrushConverter().ConvertFromString("#ea9999");
                 return false;
             }
             else if (!(Regex.IsMatch(login, "[A-Za-z]")))
             {
                 textBoxLogin.ToolTip = "Логин должен содержать хотя бы одну букву!";
-                textBoxLogin.Background = Brushes.DarkRed;
+                textBoxLogin.Background = (SolidColorBrush)new BrushConverter().ConvertFromString("#ea9999");
                 return false;
             }
             else
             {
-                textBoxLogin.ToolTip = "";
+                textBoxLogin.ToolTip = null;
                 textBoxLogin.Background = Brushes.Transparent;
                 return true;
             }
@@ -118,39 +123,45 @@ namespace RegUsers
         private bool CheckPass(string pass)
         {
             // checking PASS
-            if (pass.Length < MIN_LENGTH_PASS)
+            if (pass.Length == EMPTY_LENGTH)
+            {
+                passBox.ToolTip = "Это поле пустое!";
+                passBox.Background = (SolidColorBrush)new BrushConverter().ConvertFromString("#ea9999");
+                return false;
+            }
+            else if (pass.Length < MIN_LENGTH_PASS)
             {
                 passBox.ToolTip = "Пароль должен содержать не меньше 7 символов!";
-                passBox.Background = Brushes.DarkRed;
+                passBox.Background = (SolidColorBrush)new BrushConverter().ConvertFromString("#ea9999");
                 return false;
             }
             else if (pass.Length > MAX_LENGTH)
             {
                 passBox.ToolTip = "Пароль должен содержать не больше 30 символов!";
-                passBox.Background = Brushes.DarkRed;
+                passBox.Background = (SolidColorBrush)new BrushConverter().ConvertFromString("#ea9999");
                 return false;
             }
             else if (Regex.IsMatch(pass, "[а-я]"))
             {
                 passBox.ToolTip = "Пароль должен состоять из букв только латинского алфавита!";
-                passBox.Background = Brushes.DarkRed;
+                passBox.Background = (SolidColorBrush)new BrushConverter().ConvertFromString("#ea9999");
                 return false;
             }
             else if (!(Regex.IsMatch(pass, "[A-Za-z]")))
             {
                 passBox.ToolTip = "Пароль должен содержать хотя бы одну букву!";
-                passBox.Background = Brushes.DarkRed;
+                passBox.Background = (SolidColorBrush)new BrushConverter().ConvertFromString("#ea9999");
                 return false;
             }
             else if (!(Regex.IsMatch(pass, "[0-9]")))
             {
                 passBox.ToolTip = "Пароль должен содержать хотя бы одну цифру!";
-                passBox.Background = Brushes.DarkRed;
+                passBox.Background = (SolidColorBrush)new BrushConverter().ConvertFromString("#ea9999");
                 return false;
             }
             else
             {
-                passBox.ToolTip = "";
+                passBox.ToolTip = null;
                 passBox.Background = Brushes.Transparent;
                 return true;
             }
@@ -161,18 +172,18 @@ namespace RegUsers
             if (pass_2.Length == EMPTY_LENGTH)
             {
                 passBox_2.ToolTip = "Это поле пустое!";
-                passBox_2.Background = Brushes.DarkRed;
+                passBox_2.Background = (SolidColorBrush)new BrushConverter().ConvertFromString("#ea9999");
                 return false;
             }
             else if (pass != pass_2)
             {
                 passBox_2.ToolTip = "Пароли должны быть одинаковыми!";
-                passBox_2.Background = Brushes.DarkRed;
+                passBox_2.Background = (SolidColorBrush)new BrushConverter().ConvertFromString("#ea9999");
                 return false;
             }
             else
             {
-                passBox_2.ToolTip = "";
+                passBox_2.ToolTip = null;
                 passBox_2.Background = Brushes.Transparent;
                 return true;
             }
@@ -183,16 +194,22 @@ namespace RegUsers
             string pattern = @"^(?("")(""[^""]+?""@)|(([0-9a-z]((\.(?!\.))|[-!#\$%&'\*\+/=\?\^`\{\}\|~\w])*)(?<=[0-9a-z])@))" +
                 @"(?(\[)(\[(\d{1,3}\.){3}\d{1,3}\])|(([0-9a-z][-\w]*[0-9a-z]*\.)+[a-z0-9]{2,17}))$";
 
-            if (Regex.IsMatch(email, pattern, RegexOptions.IgnoreCase))
+            if (email.Length == EMPTY_LENGTH)
             {
-                textBoxEmail.ToolTip = "";
-                textBoxEmail.Background = Brushes.Transparent;
+                textBoxEmail.ToolTip = "Это поле пустое!";
+                textBoxEmail.Background = (SolidColorBrush)new BrushConverter().ConvertFromString("#ea9999");
+                return false;
+            }
+            else if (!Regex.IsMatch(email, pattern, RegexOptions.IgnoreCase))
+            {
+                textBoxEmail.ToolTip = "Некорректный Email!";
+                textBoxEmail.Background = (SolidColorBrush)new BrushConverter().ConvertFromString("#ea9999");
                 return true;
             }
             else
             {
-                textBoxEmail.ToolTip = "Некорректный Email!";
-                textBoxEmail.Background = Brushes.DarkRed;
+                textBoxEmail.ToolTip = null;
+                textBoxEmail.Background = Brushes.Transparent;
                 return false;
             }
         }
