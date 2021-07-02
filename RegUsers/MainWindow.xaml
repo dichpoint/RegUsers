@@ -14,7 +14,7 @@
                 <DropShadowEffect BlurRadius="30" Color="LightGray" ShadowDepth="0"></DropShadowEffect>
             </Border.Effect>
             <StackPanel>
-                <TextBlock HorizontalAlignment="Center" Text="RegUsers" FontSize="30" FontWeight="Bold" Margin="0 0 0 0"></TextBlock>
+                <TextBlock HorizontalAlignment="Center" Text="Регистрация" FontSize="30" FontWeight="Bold" Margin="0 0 0 0"></TextBlock>
 
                 <Button HorizontalAlignment="Center" Content="Войти" Margin="0 -3 0 5" Foreground="Blue" Click="Button_WinAuth_Click" Style="{StaticResource MaterialDesignFlatButton}"></Button>
 
